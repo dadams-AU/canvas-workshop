@@ -610,7 +610,7 @@ Codex now applies the subset you approved. Everything is still unpublished.
 
 ---
 
-# Card 5 — Guardrails (keep visible while you work)
+# Card 5 — Guardrails
 
 - AI drafts; **faculty review** before publish.
 - **Never paste tokens** into slides or chat.
