@@ -474,30 +474,6 @@ curl.exe -o AGENTS.md `
 
 ---
 
-# Alternative — let Codex write its own `AGENTS.md`
-
-If `curl` gives you trouble, start Codex now and paste:
-
-```text
-Create an AGENTS.md in this folder that tells you how to use the
-Canvas LMS REST API at $CANVAS_BASE_URL with bearer token
-$CANVAS_TOKEN. Include endpoints for courses, modules, pages,
-assignments, and module items.
-
-Include these rules:
-- keep all assignments unpublished
-- preserve syllabus policy language verbatim
-- use "(DATE NEEDED)" for missing due dates
-- never invent policies or grading categories
-- the syllabus.txt file in this folder is the single source of truth
-
-Then summarize what you wrote.
-```
-
-<span class="small">Good demo of what the agent can do — its first action is writing its own instructions.</span>
-
----
-
 <!-- _class: section -->
 
 <span class="kicker">Part 5 · 20 minutes · Live Demo</span>
@@ -528,6 +504,30 @@ Codex must be launched <em>inside the folder that contains</em> <code>syllabus.t
 
 ---
 
+# If you don't have `AGENTS.md` yet
+
+If the `curl` download in Part 4 didn't work, paste this as your **first** prompt — Codex will write its own instructions:
+
+```text
+Create an AGENTS.md in this folder that tells you how to use the
+Canvas LMS REST API at $CANVAS_BASE_URL with bearer token
+$CANVAS_TOKEN. Include endpoints for courses, modules, pages,
+assignments, and module items.
+
+Include these rules:
+- keep all assignments unpublished
+- preserve syllabus policy language verbatim
+- use "(DATE NEEDED)" for missing due dates
+- never invent policies or grading categories
+- the syllabus.txt file in this folder is the single source of truth
+
+Then summarize what you wrote.
+```
+
+<span class="small">⚠️ If you already downloaded <code>AGENTS.md</code>, skip this slide and go straight to Card 1.</span>
+
+---
+
 # Card 1 — Connect
 
 ```text
@@ -537,7 +537,9 @@ Verify connection and report the course name before doing anything else.
 
 **Expected:** Codex prints the course name from your sandbox and waits for your next instruction.
 
+<div class="warn">
 <span class="small">If it prints someone else's course name, your COURSE_ID is wrong. Stop and fix it.</span>
+</div>
 
 ---
 
@@ -648,7 +650,7 @@ Codex now applies the subset you approved. Everything is still unpublished.
 4. Paste **Card 3** (Audit). Read what it flags.
 5. If you have time, paste **Card 4** with one fix you approved.
 
-Facilitators circulate for help. Use **Shift + Return/Enter** for newlines in multi-line prompts.
+Use **Shift + Return/Enter** for newlines in multi-line prompts.
 
 ---
 
