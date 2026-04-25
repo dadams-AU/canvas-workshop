@@ -3,7 +3,9 @@
 Workshop materials for using an AI agent (Codex) to turn a plain-text syllabus into a scaffolded Canvas course — weekly modules, assignment stubs, due dates, and a course landing page — in a single 90-minute session.
 
 **Audience:** Faculty. No programming experience required.
+
 **Agent:** OpenAI Codex (desktop app for macOS and Windows).
+
 **Philosophy:** AI drafts. You verify. Nothing publishes until you audit dates, points, and policy language against your original syllabus.
 
 > **Workshop ran 2026-04-23.** The original deck used the Codex **CLI** for both Mac and Windows, since the Codex desktop app was Mac-only at the time. The Codex desktop app is now available for **Windows** as well, so the current version of the workshop uses the desktop app on both platforms — see **`slides-app.md`** (rendered as `slides-app.pdf` / `slides-app.html`). The original CLI deck is preserved in **`command-line-instructions/`** for anyone who prefers a terminal-based flow.
