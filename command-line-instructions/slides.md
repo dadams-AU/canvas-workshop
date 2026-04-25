@@ -566,7 +566,7 @@ Rules:
 
 # What Codex is actually doing
 
-It's making a series of Canvas API calls:
+It's making a series of Canvas API calls:kf
 
 ```text
 POST  /api/v1/courses/:id/pages            (landing page)

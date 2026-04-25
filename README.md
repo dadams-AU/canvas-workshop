@@ -3,51 +3,38 @@
 Workshop materials for using an AI agent (Codex) to turn a plain-text syllabus into a scaffolded Canvas course — weekly modules, assignment stubs, due dates, and a course landing page — in a single 90-minute session.
 
 **Audience:** Faculty. No programming experience required.
-**Agent:** OpenAI Codex (CLI or macOS app).
+**Agent:** OpenAI Codex (desktop app for macOS and Windows).
 **Philosophy:** AI drafts. You verify. Nothing publishes until you audit dates, points, and policy language against your original syllabus.
+
+> **Workshop ran 2026-04-23.** The original deck used the Codex **CLI** for both Mac and Windows, since the Codex desktop app was Mac-only at the time. The Codex desktop app is now available for **Windows** as well, so the current version of the workshop uses the desktop app on both platforms — see **`slides-app.md`** (rendered as `slides-app.pdf` / `slides-app.html`). The original CLI deck is preserved in **`command-line-instructions/`** for anyone who prefers a terminal-based flow.
 
 ---
 
 ## What's in this repo
 
-| File | Purpose |
+| Path | Purpose |
 |---|---|
-| `slides.md` | Marp source for the workshop deck |
-| `slides.pdf` | Rendered slide deck (print / project) |
-| `slides.html` | Rendered HTML version of the deck |
+| `slides-app.md` | **Current** Marp source — Codex desktop app (Mac + Windows) |
+| `slides-app.pdf` / `slides-app.html` | Rendered current deck (print / project / share) |
+| `command-line-instructions/slides.md` | Original Marp source — Codex CLI flow (terminal-based) |
+| `command-line-instructions/slides.pdf` | Rendered CLI deck |
+| `command-line-instructions/slides.html` | Rendered HTML version of the CLI deck |
 | `AGENTS.md` | Instructions Codex reads on startup — Canvas API endpoints and workflow rules |
 | `README.md` | This file |
 
 ---
 
-## Quick start (for participants)
+## Quick start (for participants — desktop app)
 
-### 1. Install prerequisites
+### 1. Install the Codex desktop app
 
-**macOS**
-```bash
-brew install node
-brew install --cask codex || npm install -g @openai/codex
-```
-
-**Windows (PowerShell)**
-```powershell
-winget install --id OpenJS.NodeJS.LTS -e
-npm install -g @openai/codex
-```
-
-Verify:
-```bash
-node --version
-codex --version
-```
+- Go to <https://developers.openai.com/codex/quickstart?setup=app>.
+- Download the **macOS** or **Windows** build and run the installer.
+- Launch **Codex** and sign in with your **OpenAI EDU account**.
 
 ### 2. Create a workshop folder
 
-```bash
-mkdir -p ~/canvas-workshop
-cd ~/canvas-workshop
-```
+Use Finder (Mac) or File Explorer (Windows) to create a folder named `canvas-workshop` somewhere convenient (e.g., your Home folder or Documents).
 
 ### 3. Get your three Canvas values
 
@@ -57,48 +44,37 @@ cd ~/canvas-workshop
 
 Create your sandbox via **Courses → All Courses → + Start a New Course**.
 
-### 4. Save `canvas-env.txt` in the workshop folder
+### 4. Save `canvas-config.txt` in the workshop folder
 
-**macOS / Linux**
-```bash
-export CANVAS_BASE_URL="https://csufullerton.instructure.com"
-export CANVAS_TOKEN="paste_your_token_here"
-export COURSE_ID="123456"
+Open TextEdit (Mac, set to **Make Plain Text**) or Notepad (Windows). Paste, fill in your values, save as `canvas-config.txt` inside `canvas-workshop`:
+
+```text
+CANVAS_BASE_URL=https://csufullerton.instructure.com
+CANVAS_TOKEN=paste_your_token_here
+COURSE_ID=123456
 ```
 
-**Windows PowerShell**
-```powershell
-$env:CANVAS_BASE_URL="https://csufullerton.instructure.com"
-$env:CANVAS_TOKEN="paste_your_token_here"
-$env:COURSE_ID="123456"
-```
-
-Paste these lines into your terminal each session to set the vars.
+Treat this file like the password it is — don't share, email, or commit it.
 
 ### 5. Drop `AGENTS.md` into the folder
 
-```bash
-curl -o AGENTS.md \
-  https://raw.githubusercontent.com/dadams-AU/canvas-workshop/main/AGENTS.md
-```
-
-**Windows PowerShell**
-```powershell
-curl.exe -o AGENTS.md `
-  https://raw.githubusercontent.com/dadams-AU/canvas-workshop/main/AGENTS.md
-```
+- Open <https://github.com/dadams-AU/canvas-workshop> in your browser.
+- Click **AGENTS.md** → **Download raw file**.
+- Move the downloaded file into your `canvas-workshop` folder.
 
 ### 6. Convert your syllabus
 
 Save your `.docx` syllabus as `syllabus.txt` in the workshop folder (Word: **File → Save As → Plain Text (.txt)**, UTF-8).
 
-### 7. Launch Codex in the folder
+### 7. Open the folder in Codex
 
-```bash
-codex
-```
+In the Codex app: **File → Open Folder…** (Mac) or **File → Open…** (Windows), then select your `canvas-workshop` folder. You should see all three files (`canvas-config.txt`, `syllabus.txt`, `AGENTS.md`) in the file panel.
 
-Or open the Codex Mac app and point it at `canvas-workshop`.
+---
+
+## Prefer the CLI?
+
+If you want the terminal-based flow (Node.js + `npm install -g @openai/codex` + shell environment variables), open `command-line-instructions/slides.md` (or the matching `.pdf` / `.html`) in this repo. It walks through Homebrew, `winget`, `export` / `$env:` setup, and `codex` from the command line.
 
 ---
 
@@ -108,8 +84,9 @@ Paste these into Codex one at a time. Use **Shift + Return/Enter** for new lines
 
 ### Card 1 — Connect
 ```text
-Connect to Canvas using CANVAS_BASE_URL, CANVAS_TOKEN, and COURSE_ID.
-Verify connection and report the course name before doing anything else.
+Read canvas-config.txt to load CANVAS_BASE_URL, CANVAS_TOKEN, and
+COURSE_ID. Connect to Canvas, verify the connection, and report
+the course name before doing anything else.
 ```
 
 ### Card 2 — Build
@@ -190,21 +167,22 @@ Once the build → audit → finalize loop feels natural, extend it:
 
 ## Rendering the slides locally
 
-The deck is authored in [Marp](https://marp.app/).
+Both decks are authored in [Marp](https://marp.app/).
 
 ```bash
-# HTML preview
-npx @marp-team/marp-cli slides.md
+# Desktop-app deck (current)
+npx @marp-team/marp-cli slides-app.md
+npx @marp-team/marp-cli slides-app.md --pdf
 
-# PDF export
-npx @marp-team/marp-cli slides.md --pdf
+# CLI deck (original)
+npx @marp-team/marp-cli command-line-instructions/slides.md --pdf
 ```
 
 ---
 
 ## Security reminders
 
-- **Never** commit `canvas-env.txt`, screenshots, or anything containing your API token.
+- **Never** commit `canvas-config.txt`, screenshots, or anything containing your API token.
 - Set a **~3-month expiration** on every Canvas token.
 - Use a **password manager** for token storage.
 - Work in a **sandbox course** — never point this workflow at a live section.
