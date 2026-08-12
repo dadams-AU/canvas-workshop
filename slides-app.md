@@ -30,7 +30,7 @@ style: |
 
 David P. Adams, PhD · <dpadams@fullerton.edu>
 
-Materials: **github.com/dadams-AU/canvas-workshop**
+Materials: **[github.com/dadams-AU/canvas-workshop](https://github.com/dadams-AU/canvas-workshop)**
 
 <!-- _footer: 'Sandbox only. AI drafts; you verify. Nothing publishes during this workshop.' -->
 
@@ -90,7 +90,7 @@ You may follow along—or simply watch if your device blocks a step.
 
 # 1 · Download the starter ZIP
 
-1. Go to **github.com/dadams-AU/canvas-workshop**.
+1. Go to **[github.com/dadams-AU/canvas-workshop](https://github.com/dadams-AU/canvas-workshop)**.
 2. Click **`canvas-workshop-starter.zip`**.
 3. Click the **download** button.
 4. Double-click the downloaded ZIP to extract it.
