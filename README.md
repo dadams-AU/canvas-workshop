@@ -1,200 +1,119 @@
-# Syllabus → Canvas AI Workshop
+# From Syllabus to Canvas with Codex
 
-Workshop materials for using an AI agent (Codex) to turn a plain-text syllabus into a scaffolded Canvas course — weekly modules, assignment stubs, due dates, and a course landing page — in a single 90-minute session.
+Materials for **From Syllabus to Canvas: Building Your Course Shell with an AI Agent**, a 60-minute faculty Zoom workshop on August 18, 2026.
 
-**Audience:** Faculty. No programming experience required.
+The workshop demonstrates how to use **Codex in the ChatGPT desktop app** to turn a plain-text syllabus into an unpublished Canvas course draft.
 
-**Agent:** OpenAI Codex (desktop app for macOS and Windows).
+**Audience:** Faculty with no programming, terminal, Git, GitHub, or Canvas API experience.
 
-**Philosophy:** AI drafts. You verify. Nothing publishes until you audit dates, points, and policy language against your original syllabus.
+**Standard:** AI drafts. The instructor verifies. Nothing is published during the workshop.
 
-> **Workshop ran 2026-04-23.** The original deck used the Codex **CLI** for both Mac and Windows, since the Codex desktop app was Mac-only at the time. The Codex desktop app is now available for **Windows** as well, so the current version of the workshop uses the desktop app on both platforms — see **`slides-app.md`** (rendered as `slides-app.pdf` / `slides-app.html`). The original CLI deck is preserved in **`command-line-instructions/`** for anyone who prefers a terminal-based flow.
+## Start here during the Zoom
 
----
+You do not need Git or a GitHub account. This page is only a place to download one file.
 
-## What's in this repo
+1. Click **`canvas-workshop-starter.zip`** in the file list above.
+2. Click the download button on the next page.
+3. Double-click the downloaded ZIP to extract it.
+4. Open `README-FIRST.txt` inside the new `canvas-workshop` folder.
+
+The ZIP contains the copyable HTML slides, a fictional practice syllabus, blank configuration template, five prompt cards, and safety instructions. It never contains a real Canvas token.
+
+For easier copying and pasting, double-click **`slides-app.html`** after extracting the ZIP. It opens the complete deck in a web browser, where participants can select the prompt-card text. `PROMPT-CARDS.md` provides the same prompts without the surrounding slides.
+
+## Account
+
+A university-managed **ChatGPT Edu** account is preferred. During the live session, participants should use only the fictional syllabus and an empty Canvas sandbox—never student records or other confidential data. Anyone without access to Codex can watch the demonstration and use the materials later.
+
+## What is in this repository
 
 | Path | Purpose |
 |---|---|
-| `slides-app.md` | **Current** Marp source — Codex desktop app (Mac + Windows) |
-| `slides-app.pdf` / `slides-app.html` | Rendered current deck (print / project / share) |
-| `command-line-instructions/slides.md` | Original Marp source — Codex CLI flow (terminal-based) |
-| `command-line-instructions/slides.pdf` | Rendered CLI deck |
-| `command-line-instructions/slides.html` | Rendered HTML version of the CLI deck |
-| `AGENTS.md` | Instructions Codex reads on startup — Canvas API endpoints and workflow rules |
-| `README.md` | This file |
+| `canvas-workshop-starter.zip` | One-download participant bundle |
+| `slides-app.pdf` | Current 60-minute presentation |
+| `slides-app.md` / `slides-app.html` | Marp source and copyable browser version |
+| `AGENTS.md` | Canvas API workflow and agent guardrails |
+| `PROMPT-CARDS.md` | Five prompts and manual-review checklist |
+| `README-FIRST.txt` | Plain-language participant setup |
+| `canvas-config-template.txt` | Blank template for Canvas URL, token, and course ID |
+| `syllabus-sample.txt` | Fictional syllabus included in the starter ZIP as `syllabus.txt` |
+| `command-line-instructions/` | Archived CLI version for experienced users |
 
----
+## The five-checkpoint workflow
 
-## Quick start (for participants — desktop app)
+1. **Connect:** Verify the one sandbox course using read-only requests.
+2. **Preview:** Produce a proposed manifest from `syllabus.txt`; make no Canvas changes.
+3. **Build:** Create only the instructor-approved manifest, unpublished.
+4. **Audit:** Compare Canvas with the syllabus and propose corrections.
+5. **Finalize:** Apply only explicitly approved corrections; keep everything unpublished.
 
-### 1. Install the Codex desktop app
+The copy-and-paste prompts are in [PROMPT-CARDS.md](PROMPT-CARDS.md).
 
-- Go to <https://developers.openai.com/codex/quickstart?setup=app>.
-- Download the **macOS** or **Windows** build and run the installer.
-- Launch **Codex** and sign in with your **OpenAI EDU account**.
+## Security design
 
-### 2. Create a workshop folder
+The workshop deliberately uses an approachable text file for Canvas settings. Safeguards include:
 
-Use Finder (Mac) or File Explorer (Windows) to create a folder named `canvas-workshop` somewhere convenient (e.g., your Home folder or Documents).
+- Use a temporary Canvas token with the shortest practical expiration.
+- A university-managed ChatGPT Edu account is preferred.
+- Use only the fictional syllabus during the workshop—never student records or other confidential data.
+- Keep `canvas-config.txt` only on the participant's computer.
+- Never display the token in chat, output, screenshots, or Zoom.
+- Approve network access only to the institution's Canvas hostname.
+- Verify the sandbox course name before any write request.
+- Stop on duplicate-title conflicts rather than creating duplicates.
+- Revoke the token and delete `canvas-config.txt` before leaving Zoom.
+- Keep all Canvas objects unpublished until a separate manual review.
 
-### 3. Get your three Canvas values
+The included `.gitignore` is only an extra safeguard; participants do not need to understand or use Git.
 
-- **CANVAS_BASE_URL** — e.g. `https://csufullerton.instructure.com`
-- **CANVAS_TOKEN** — Canvas → Account → Settings → **+ New Access Token**
-- **COURSE_ID** — the number in your sandbox course URL (`/courses/123456`)
+## Facilitator run of show
 
-Create your sandbox via **Courses → All Courses → + Start a New Course**.
+- **0:00–0:05:** Outcome and guardrails
+- **0:05–0:18:** Live setup sprint
+- **0:18–0:23:** Open the local project and select Ask for approval
+- **0:23–0:40:** Complete five-card demonstration
+- **0:40–0:52:** Participant follow-along in sandbox
+- **0:52–1:00:** Manual review, token cleanup, resources
 
-### 4. Save `canvas-config.txt` in the workshop folder
+Some managed computers will block installation or token creation. Those participants should watch the complete demonstration and use the same materials later; they should never bypass a device or campus security warning to keep pace.
 
-Open TextEdit (Mac, set to **Make Plain Text**) or Notepad (Windows). Paste, fill in your values, save as `canvas-config.txt` inside `canvas-workshop`:
+## Facilitator preparation
 
-```text
-CANVAS_BASE_URL=https://csufullerton.instructure.com
-CANVAS_TOKEN=paste_your_token_here
-COURSE_ID=123456
-```
+1. Test the ZIP download using a logged-out browser window.
+2. Test the complete workflow in a fresh sandbox.
+3. Confirm the institution's ChatGPT Edu workspace exposes Codex.
+4. Confirm Canvas allows faculty to create sandbox courses and personal access tokens.
+5. Keep a completed private demo folder ready; never screen-share its token.
+6. Put the repository link in Zoom chat as soon as the session opens.
 
-Treat this file like the password it is — don't share, email, or commit it.
+## Rebuild the materials
 
-### 5. Drop `AGENTS.md` into the folder
-
-- Open <https://github.com/dadams-AU/canvas-workshop> in your browser.
-- Click **AGENTS.md** → **Download raw file**.
-- Move the downloaded file into your `canvas-workshop` folder.
-
-### 6. Convert your syllabus
-
-Save your `.docx` syllabus as `syllabus.txt` in the workshop folder (Word: **File → Save As → Plain Text (.txt)**, UTF-8).
-
-### 7. Open the folder in Codex
-
-In the Codex app: **File → Open Folder…** (Mac) or **File → Open…** (Windows), then select your `canvas-workshop` folder. You should see all three files (`canvas-config.txt`, `syllabus.txt`, `AGENTS.md`) in the file panel.
-
----
-
-## Prefer the CLI?
-
-If you want the terminal-based flow (Node.js + `npm install -g @openai/codex` + shell environment variables), open `command-line-instructions/slides.md` (or the matching `.pdf` / `.html`) in this repo. It walks through Homebrew, `winget`, `export` / `$env:` setup, and `codex` from the command line.
-
----
-
-## The five prompt cards
-
-Paste these into Codex one at a time. Use **Shift + Return/Enter** for new lines inside a prompt.
-
-### Card 1 — Connect
-```text
-Read canvas-config.txt to load CANVAS_BASE_URL, CANVAS_TOKEN, and
-COURSE_ID. Connect to Canvas, verify the connection, and report
-the course name before doing anything else.
-```
-
-### Card 2 — Build
-```text
-Use the file syllabus.txt to build my Canvas sandbox course.
-
-Create:
-- one landing page
-- one module per instructional week
-- one overview page in each module
-- all syllabus assignments with points + due dates
-- correct module placement for each assignment
-
-Rules:
-- keep assignments UNPUBLISHED
-- preserve policy wording
-- if a date is missing, add "(DATE NEEDED)" and leave due date unset
-- return counts + items needing review + any failures
-```
-
-### Card 3 — Audit
-```text
-Audit everything you just created and list:
-1) missing due dates
-2) weekend due dates
-3) modules with no assignments
-4) anything inconsistent with syllabus.txt
-
-Propose fixes only. Do not apply yet.
-```
-
-### Card 4 — Finalize
-```text
-Apply only the fixes we approved:
-- [list the items you accepted]
-
-Keep all assignments UNPUBLISHED.
-Return a final manual-review checklist before I publish.
-```
-
-### Card 5 — Guardrails (keep visible)
-
-- AI drafts; faculty review before publish.
-- Never paste tokens into slides or chat.
-- Validate dates, points, policy language.
-- Build in sandbox first, then move to live course.
-- Audit every AI action before finalizing.
-- Use syllabus text as the single source of truth.
-
----
-
-## Pre-publish checklist
-
-Before flipping anything from unpublished to published, confirm:
-
-- [ ] Every assignment's **points** match the syllabus.
-- [ ] Every assignment's **due date** matches the syllabus (no weekend drift).
-- [ ] **Policy pages** (late work, academic integrity, accommodations) copied verbatim.
-- [ ] **Grading weights** on the Assignment Groups match the syllabus table.
-- [ ] **Module order** matches the syllabus schedule.
-- [ ] Nothing marked `(DATE NEEDED)` remains unresolved.
-- [ ] Landing page has contact info + office hours.
-
----
-
-## What to try next
-
-Once the build → audit → finalize loop feels natural, extend it:
-
-- **Quizzes** — "Create a 5-question low-stakes quiz from Week 3 readings, unpublished."
-- **Rubrics** — "Generate a 4-criterion rubric for the midterm paper; attach it to that assignment."
-- **Assignment groups + weights** — match your syllabus grading table.
-- **Discussions** — one weekly topic with a grading stub.
-- **Announcements** — draft (don't post) a Week 1 welcome.
-- **Copy to live course** — use Canvas's **Import Course Content**.
-
----
-
-## Rendering the slides locally
-
-Both decks are authored in [Marp](https://marp.app/).
+The slides use [Marp](https://marp.app/):
 
 ```bash
-# Desktop-app deck (current)
 npx @marp-team/marp-cli slides-app.md
 npx @marp-team/marp-cli slides-app.md --pdf
-
-# CLI deck (original)
-npx @marp-team/marp-cli command-line-instructions/slides.md --pdf
 ```
 
----
+Rebuild the starter ZIP whenever any source file changes. It should contain:
 
-## Security reminders
+- `AGENTS.md`
+- `PROMPT-CARDS.md`
+- `README-FIRST.txt`
+- `slides-app.html`
+- `canvas-config-template.txt`
+- `.gitignore`
+- `syllabus-sample.txt`, renamed to `syllabus.txt` inside the ZIP
 
-- **Never** commit `canvas-config.txt`, screenshots, or anything containing your API token.
-- Set a **~3-month expiration** on every Canvas token.
-- Use a **password manager** for token storage.
-- Work in a **sandbox course** — never point this workflow at a live section.
+## Current OpenAI references
 
----
+- [ChatGPT desktop app quickstart](https://learn.chatgpt.com/docs/quickstart?setup=app)
+- [Projects and chats](https://learn.chatgpt.com/docs/projects)
+- [Permission modes](https://learn.chatgpt.com/docs/permission-modes)
+- [Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
 
 ## Contact
 
 David P. Adams, PhD — <dpadams@fullerton.edu>
 
-[LinkedIn](https://www.linkedin.com/in/dadamscsuf/) | [GitHub](https://github.com/dadams-AU) | [Twitter](https://twitter.com/dadamsAU) | [Personal site](https://dadams.io) — Materials licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-
-Feedback welcome: prompt improvements, failure modes, new agent integrations.
+Materials licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

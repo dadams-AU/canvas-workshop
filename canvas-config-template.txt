@@ -1,0 +1,3 @@
+CANVAS_BASE_URL=https://csufullerton.instructure.com
+CANVAS_TOKEN=paste_your_temporary_token_here
+COURSE_ID=123456
