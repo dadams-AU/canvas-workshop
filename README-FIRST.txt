@@ -6,15 +6,40 @@ THIS FOLDER ALREADY CONTAINS
 
 - AGENTS.md: safety and Canvas instructions for Codex
 - PROMPT-CARDS.md: the five prompts used in the demonstration
-- slides-app.html: browser slides with text you can copy and paste
 - syllabus.txt: a short fictional syllabus for today's practice
 - canvas-config-template.txt: a blank place for three Canvas values
 
 COPY THE PROMPTS
 
-Double-click slides-app.html to open the slides in your web browser. You can
-copy and paste each prompt card directly from that version. If you want only
-the prompts, open PROMPT-CARDS.md instead.
+Open PROMPT-CARDS.md. On GitHub, each prompt has a copy button in the
+top-right corner of its box. The slides are a separate download and are not
+required.
+
+NO-DOWNLOAD SETUP
+
+Some managed Windows computers block downloaded ZIP files. Nothing here needs
+a ZIP. You need exactly two files, and both are plain text you can copy.
+
+1. Make a new folder on your Desktop named canvas-workshop.
+
+2. In the repository, open AGENTS.md and click the "Raw" button. Select all
+   the text, copy it, paste it into Notepad, and use File > Save As to save
+   it into that folder as AGENTS.md. Set "Save as type" to "All Files" so
+   Notepad does not add .txt to the name.
+
+3. Do the same with syllabus-sample.txt, saving it as syllabus.txt.
+
+4. Make a third file the same way, named canvas-config.txt, containing
+   three lines. Type these yourself and fill in your own values:
+
+     CANVAS_BASE_URL=https://csufullerton.instructure.com
+     CANVAS_TOKEN=your_temporary_token
+     COURSE_ID=your_sandbox_course_id
+
+That folder is everything Codex needs. Read PROMPT-CARDS.md in your browser.
+
+Do not turn off Windows Defender, SmartScreen, or any other security control,
+and do not ask your IT department to make an exception for a workshop file.
 
 GET READY
 
