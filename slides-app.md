@@ -4,7 +4,6 @@ theme: default
 paginate: true
 title: From Syllabus to Canvas — Building Your Course Shell with an AI Agent
 author: David P. Adams, PhD
-date: August 18, 2026
 style: |
   section { font-size: 28px; }
   section h1 { font-size: 44px; }
@@ -22,7 +21,7 @@ style: |
 
 <!-- _class: section -->
 
-<span class="kicker">Faculty Development · Tuesday, August 18 · 1:00–2:00 pm · Zoom</span>
+<span class="kicker">Faculty Development · 1:00–2:00 pm · Zoom</span>
 
 # From Syllabus to Canvas
 
@@ -49,19 +48,6 @@ No programming, command line, Git, or GitHub account is required. We use GitHub 
 Download **`slides-app.html`** for a browser version that makes the prompt-card text easy to copy and paste.
 
 <span class="small">If setup is blocked on your device, follow the demonstration and use the same materials later.</span>
-
----
-
-# Our one-hour plan
-
-| Time | Segment |
-|---|---|
-| 0:00–0:05 | Outcome + guardrails |
-| 0:05–0:18 | Setup sprint: download, app, sandbox, token |
-| 0:18–0:23 | Open the project safely |
-| 0:23–0:40 | Complete live demonstration |
-| 0:40–0:52 | Try it in your own sandbox |
-| 0:52–1:00 | Manual review, cleanup, resources |
 
 ---
 
