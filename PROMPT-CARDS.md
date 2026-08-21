@@ -83,6 +83,7 @@ Return a final manual-review checklist and report any failures.
 - [ ] Grading weights match the syllabus, if weights are specified.
 - [ ] Every `(DATE NEEDED)` flag is resolved.
 - [ ] Pages, modules, assignments, and module items remain unpublished.
+- [ ] The landing page is set as the course front page. The agent cannot do this: in Canvas, go to **Pages → View All Pages**, open the landing page, and choose **⋮ → Use as Front Page** after you publish.
 
 ## Cleanup
 

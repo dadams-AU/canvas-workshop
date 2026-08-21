@@ -69,7 +69,8 @@ Part 1 could refuse to invent because the syllabus carried everything the shell 
   { "wiki_page": { "title": "...", "body": "<html>", "published": false, "front_page": false } }
   ```
 
-- Set `front_page: true` only for the landing page.
+- Always send `front_page: false`. Canvas will not make an unpublished page the front page, and rule 2 keeps every page unpublished, so a `front_page: true` request fails and the run stalls.
+- **Setting the front page is a manual instructor step.** After the instructor publishes the course, they set it in Canvas: **Pages → View All Pages → the landing page → ⋮ → Use as Front Page**. Do not attempt it through the API, and do not publish a page in order to make it possible. Include this step in the manual-review checklist you return.
 - A `PUT` replaces the entire `body`. Read the existing body first and preserve any content you are not explicitly asked to change.
 
 ### Assignments
@@ -192,7 +193,7 @@ Every page body and assignment description you write must meet WCAG 2.1 Level AA
 5. **Label what you compose.** Follow the marking rules under "Labeling generated content." An unlabeled draft is a failed run.
 6. **Time zone.** Use the course time zone when available. If the syllabus gives no time and the course uses `America/Los_Angeles`, default to `23:59` local.
 7. **One module per syllabus week.** Use week labels verbatim. Include exam, break, and other non-instructional weeks when they appear in the syllabus.
-8. **Landing page.** Use only syllabus essentials: welcome, instructor contact, office hours, grading summary, and schedule highlights. Do not reproduce the full syllabus.
+8. **Landing page.** Use only syllabus essentials: welcome, instructor contact, office hours, grading summary, and schedule highlights. Do not reproduce the full syllabus. Create it as an ordinary unpublished page with `front_page: false`; the instructor designates the front page manually in Canvas.
 9. **Clean, accessible HTML.** Follow every rule under "Accessible HTML."
 10. **No duplicates.** Inventory existing Canvas content before writing. If a proposed title already exists, stop and show the conflict rather than creating another item.
 11. **Edit narrowly.** When updating an existing item, read it first, change only the named field, and preserve everything else.

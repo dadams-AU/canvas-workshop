@@ -47,7 +47,8 @@ Do not invent policies, assignments, grading categories, dates, points, weights,
   { "wiki_page": { "title": "...", "body": "<html>", "published": false, "front_page": false } }
   ```
 
-- Set `front_page: true` only for the landing page.
+- Always send `front_page: false`. Canvas will not make an unpublished page the front page, and rule 2 keeps every page unpublished, so a `front_page: true` request fails and the run stalls.
+- **Setting the front page is a manual instructor step.** After the instructor publishes the course, they set it in Canvas: **Pages → View All Pages → the landing page → ⋮ → Use as Front Page**. Do not attempt it through the API, and do not publish a page in order to make it possible. Include this step in the manual-review checklist you return.
 
 ### Modules
 
@@ -101,7 +102,7 @@ Do not invent policies, assignments, grading categories, dates, points, weights,
 4. **Do not invent.** Omit unspecified optional fields and flag them for review.
 5. **Time zone.** Use the course time zone when available. If the syllabus gives no time and the course uses `America/Los_Angeles`, default to `23:59` local.
 6. **One module per syllabus week.** Use week labels verbatim. Include exam, break, and other non-instructional weeks when they appear in the syllabus.
-7. **Landing page.** Use only syllabus essentials: welcome, instructor contact, office hours, grading summary, and schedule highlights. Do not reproduce the full syllabus.
+7. **Landing page.** Use only syllabus essentials: welcome, instructor contact, office hours, grading summary, and schedule highlights. Do not reproduce the full syllabus. Create it as an ordinary unpublished page with `front_page: false`; the instructor designates the front page manually in Canvas.
 8. **Clean HTML.** Use valid Canvas-safe headings, paragraphs, and lists. Do not use scripts or external CSS.
 9. **No duplicates.** Inventory existing Canvas content before writing. If a proposed title already exists, stop and show the conflict rather than creating another item.
 10. **Secret handling.** Never print, return, echo, or write `CANVAS_TOKEN`. If a command or error would expose it, stop and use a redacted approach.
